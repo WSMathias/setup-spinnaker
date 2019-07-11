@@ -80,7 +80,7 @@ sudo hal deploy apply
 ```
 
 ### step9:
-expose port to access spinnaker
+expose port to access spinnaker (k8s)
 ```sh
 sudo hal deploy connect
 ```
