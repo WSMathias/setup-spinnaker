@@ -30,6 +30,7 @@ ACCOUNT=my-k8s-v2-account
 hal config provider kubernetes account add $ACCOUNT \
     --provider-version v2 \
     --context $CONTEXT
+hal config features edit --artifacts true
 ```
 ### step4:
 Location to install spinnaker
@@ -86,3 +87,9 @@ sudo hal deploy connect
 ```
 
 Note: uninstall spinnaker using `hal deploy clean'
+
+## connect via ssh tunnel
+
+```sh
+ssh -N -i key.pem -L 9000:127.0.0.1:9000 -L 8084:127.0.0.1:8084 -L 8087:127.0.0.1:8087 -L 8080:127.0.0.1:8080 ubuntu@xx.xx.xx.xx
+```
