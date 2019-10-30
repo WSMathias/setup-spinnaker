@@ -58,12 +58,13 @@ $ hal config provider docker-registry account add my-docker-registry \
 ### step6:
 #### Setup spinnaker data store to s3
 ```bash
-$ hal config storage edit --type s3
 $ hal config storage s3 edit \
     --access-key-id $YOUR_ACCESS_KEY_ID \
     --secret-access-key \
-    --region $REGION
+    --region <aws-region> \
     --bucket <bucket-name>
+$ hal config storage edit --type s3
+
 ```
 
 ### step7:
