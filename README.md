@@ -44,7 +44,7 @@ $ kubectl config set-context $CONTEXT --user ${CONTEXT}-token-user
 ````
 ### role bindings for spinnaker account
 ````bash
-cat <<EOF | kubectl apply -f -
+$ cat <<EOF | kubectl apply -f -
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -153,13 +153,16 @@ $ sudo hal deploy apply
 ### step9:
 #### Expose port to access spinnaker (k8s)
 ```sh
-sudo hal deploy connect
+$ sudo hal deploy connect
 ```
 
-Note: uninstall spinnaker using `hal deploy clean'
+Note: uninstall spinnaker using 
+````bash
+$ hal deploy clean
+````
 
 ## connecting via ssh tunnel
 
 ```sh
-ssh -N -i key.pem -L 9000:127.0.0.1:9000 -L 8084:127.0.0.1:8084 ubuntu@xx.xx.xx.xx
+$ ssh -N -i key.pem -L 9000:127.0.0.1:9000 -L 8084:127.0.0.1:8084 ubuntu@xx.xx.xx.xx
 ```
