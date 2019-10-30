@@ -105,16 +105,16 @@ $ hal config features edit --artifacts true
 #### Note: Incase of multiple clusters repeate 3(a) and 3(b) for each cluster by switcing context.
 
 ### Step 4:
-#### Location to install spinnaker
-if installing on current system which must meet requirement  (min 4GB RAM and 2 CPU cores
+#### Location to install spinnaker 
+#### On current system (min 4GB RAM and 2 CPU cores)
 ```bash
 $ hal config deploy edit --type localdebian
 ```
-or if installing on same k8s cluster
+#### On k8s cluster
 ```bash
 $ hal config deploy edit --type distributed --account-name $ACCOUNT
 ```
-Note: $ACCOUNT is from step 3(b), choose on which cluster to install spinnaker
+#### Note: $ACCOUNT is from step 3(b), choose on which cluster to install spinnaker
 
 ###  Step 5:
 #### Add docker registry
