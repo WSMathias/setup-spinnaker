@@ -1,6 +1,6 @@
 ## Simple guide to install spinnaker
 
-### step0:
+### Step 0:
 #### Install kubectl (ignore if already installed)
 ```bash
 $ curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
@@ -8,7 +8,7 @@ $ chmod +x ./kubectl
 $ sudo mv ./kubectl /usr/local/bin/kubectl
 ```
 
-### step1:
+### Step 1:
 #### Install halyard
 ```bash
 $ curl -O https://raw.githubusercontent.com/spinnaker/halyard/master/install/debian/InstallHalyard.sh
@@ -16,13 +16,13 @@ $ echo $USER | sudo bash InstallHalyard.sh
 $ sudo update-halyard # optional
 ```
 
-### step2:
+### Step 2:
 #### Set provider
 ```bash
 $ hal config provider kubernetes enable
 ```
 
-### step3(a) (Important):
+### Step 3(a):
 ### create k8s account service account for spinnaker.
 ````bash
 $ CONTEXT=$(kubectl config current-context)
@@ -91,16 +91,18 @@ metadata:
 EOF
 ````
 
-### step3(b) (Important):
+### step3(b):
 #### Add k8s account to spinnaker
 ```bash
 $ CONTEXT=$(kubectl config current-context)
-$ ACCOUNT=my-k8s-v2-account
+$ ACCOUNT=${CONTEXT}-account
 $ hal config provider kubernetes account add $ACCOUNT \
     --provider-version v2 \
     --context $CONTEXT
 $ hal config features edit --artifacts true
 ```
+#### Note: Incase of multiple clusters repeate 3(a) and 3(b) for each cluster by switcing context.
+
 ### step4:
 #### Location to install spinnaker
 if installing on current system which must meet requirement  (min 4GB RAM and 2 CPU cores
@@ -111,7 +113,7 @@ or if installing on same k8s cluster
 ```bash
 $ hal config deploy edit --type distributed --account-name $ACCOUNT
 ```
-Note: $ACCOUNT from step 3
+Note: $ACCOUNT is from step 3(b), choose on which cluster to install spinnaker
 
 ### step5:
 #### Add docker registry
@@ -133,7 +135,6 @@ $ hal config storage s3 edit \
     --region <aws-region> \
     --bucket <bucket-name>
 $ hal config storage edit --type s3
-
 ```
 
 ### step7:
