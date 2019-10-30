@@ -24,7 +24,7 @@ $ hal config provider kubernetes enable
 ```
 
 ### Step 3(a):
-### create k8s account service account for spinnaker.
+#### create k8s account service account for spinnaker.
 ````bash
 $ CONTEXT=$(kubectl config current-context)
 
@@ -43,7 +43,7 @@ $ TOKEN=$(kubectl get secret --context $CONTEXT \
 $ kubectl config set-credentials ${CONTEXT}-token-user --token $TOKEN
 $ kubectl config set-context $CONTEXT --user ${CONTEXT}-token-user
 ````
-### role bindings for spinnaker account
+#### role bindings for spinnaker account
 ````bash
 $ cat <<EOF | kubectl apply -f -
 apiVersion: rbac.authorization.k8s.io/v1
