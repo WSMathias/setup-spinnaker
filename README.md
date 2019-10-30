@@ -1,7 +1,8 @@
 ## Simple guide to install spinnaker
 
 ### Step 0:
-#### Install kubectl (ignore if already installed)
+#### Install kubectl:
+##### copy/create kubeconfig at ~/.kube/config or set env vriable 
 ```bash
 $ curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
 $ chmod +x ./kubectl
@@ -91,7 +92,7 @@ metadata:
 EOF
 ````
 
-### step3(b):
+### Step 3(b):
 #### Add k8s account to spinnaker
 ```bash
 $ CONTEXT=$(kubectl config current-context)
@@ -103,7 +104,7 @@ $ hal config features edit --artifacts true
 ```
 #### Note: Incase of multiple clusters repeate 3(a) and 3(b) for each cluster by switcing context.
 
-### step4:
+### Step 4:
 #### Location to install spinnaker
 if installing on current system which must meet requirement  (min 4GB RAM and 2 CPU cores
 ```bash
@@ -115,7 +116,7 @@ $ hal config deploy edit --type distributed --account-name $ACCOUNT
 ```
 Note: $ACCOUNT is from step 3(b), choose on which cluster to install spinnaker
 
-### step5:
+###  Step 5:
 #### Add docker registry
 ```bash
 $ hal config provider docker-registry enable
@@ -126,7 +127,7 @@ $ hal config provider docker-registry account add my-docker-registry \
         --repositories $REPOSITORIES
 ```
 
-### step6:
+###  Step 6:
 #### Setup spinnaker data store to s3
 ```bash
 $ hal config storage s3 edit \
@@ -137,7 +138,7 @@ $ hal config storage s3 edit \
 $ hal config storage edit --type s3
 ```
 
-### step7:
+### Step 7:
 #### Select spinnaker version.
 ```bash
 $ hal version list
@@ -145,13 +146,13 @@ $ hal version list
 $ VERSION=1.14.9 ## example
 $ hal config version edit --version $VERSION
 ```
-### step8:
+### Step 8:
 #### Install spinnaker
 ```bash
 $ sudo hal deploy apply
 ```
 
-### step9:
+### Step 9:
 #### Expose port to access spinnaker (k8s)
 ```sh
 $ sudo hal deploy connect
