@@ -42,7 +42,7 @@ $ TOKEN=$(kubectl get secret --context $CONTEXT \
 $ kubectl config set-credentials ${CONTEXT}-token-user --token $TOKEN
 $ kubectl config set-context $CONTEXT --user ${CONTEXT}-token-user
 ````
-### role bindings spinnaker account
+### role bindings for spinnaker account
 ````bash
 cat <<EOF | kubectl apply -f -
 apiVersion: rbac.authorization.k8s.io/v1
