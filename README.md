@@ -2,12 +2,12 @@
 
 ### Step 0:
 #### Install kubectl:
-##### copy/create kubeconfig at ~/.kube/config or pass argument --kubeconfig=urCongigFile to kubectl
 ```bash
 $ curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
 $ chmod +x ./kubectl
 $ sudo mv ./kubectl /usr/local/bin/kubectl
 ```
+##### Note: Copy/Create kubeconfig at ~/.kube/config or pass argument --kubeconfig=urCongigFile to kubectl to access cluster.
 
 ### Step 1:
 #### Install halyard
@@ -24,7 +24,7 @@ $ hal config provider kubernetes enable
 ```
 
 ### Step 3(a):
-#### create k8s account service account for spinnaker.
+#### Create k8s account service account for spinnaker.
 ````bash
 $ CONTEXT=$(kubectl config current-context)
 
@@ -43,7 +43,7 @@ $ TOKEN=$(kubectl get secret --context $CONTEXT \
 $ kubectl config set-credentials ${CONTEXT}-token-user --token $TOKEN
 $ kubectl config set-context $CONTEXT --user ${CONTEXT}-token-user
 ````
-#### role bindings for spinnaker account
+#### Role bindings for spinnaker account.
 ````bash
 $ cat <<EOF | kubectl apply -f -
 apiVersion: rbac.authorization.k8s.io/v1
@@ -157,14 +157,12 @@ $ sudo hal deploy apply
 ```sh
 $ sudo hal deploy connect
 ```
+#### Connect via ssh tunnel if halyard is installed at a remote system.
 
-Note: uninstall spinnaker using 
+````bash
+$ ssh -N -i key.pem -L 9000:127.0.0.1:9000 -L 8084:127.0.0.1:8084 ubuntu@xx.xx.xx.xx
+````
+#### Note: uninstall spinnaker using (retains hal configuration)
 ````bash
 $ hal deploy clean
 ````
-
-## connecting via ssh tunnel
-
-```sh
-$ ssh -N -i key.pem -L 9000:127.0.0.1:9000 -L 8084:127.0.0.1:8084 ubuntu@xx.xx.xx.xx
-```
