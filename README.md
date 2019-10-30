@@ -2,7 +2,7 @@
 
 ### Step 0:
 #### Install kubectl:
-##### copy/create kubeconfig at ~/.kube/config or set env vriable 
+##### copy/create kubeconfig at ~/.kube/config or pass argument --kubeconfig=urCongigFile to kubectl
 ```bash
 $ curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
 $ chmod +x ./kubectl
