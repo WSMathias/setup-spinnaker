@@ -17,7 +17,7 @@ $ sudo update-halyard # optional
 ```
 
 ### step2:
-#### Set provider ()
+#### Set provider
 ```bash
 hal config provider kubernetes enable
 ```
