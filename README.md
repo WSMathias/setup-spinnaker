@@ -1,4 +1,4 @@
-## Simple guide to eetup Spinnaker
+## Simple guide to setup Spinnaker
 
 ### Step 0:
 #### Install kubectl:
