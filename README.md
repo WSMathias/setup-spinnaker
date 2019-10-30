@@ -19,18 +19,18 @@ $ sudo update-halyard # optional
 ### step2:
 #### Set provider
 ```bash
-hal config provider kubernetes enable
+$ hal config provider kubernetes enable
 ```
 
 ### step3:
 #### Add k8s account to spinnaker
 ```bash
-CONTEXT=$(kubectl config current-context)
-ACCOUNT=my-k8s-v2-account
-hal config provider kubernetes account add $ACCOUNT \
+$ CONTEXT=$(kubectl config current-context)
+$ ACCOUNT=my-k8s-v2-account
+$ hal config provider kubernetes account add $ACCOUNT \
     --provider-version v2 \
     --context $CONTEXT
-hal config features edit --artifacts true
+$ hal config features edit --artifacts true
 ```
 ### step4:
 #### Location to install spinnaker
@@ -72,13 +72,13 @@ $ hal config storage edit --type s3
 ```bash
 $ hal version list
 ## select appropriate version from above result
-VERSION=1.14.9 ## example
-hal config version edit --version $VERSION
+$ VERSION=1.14.9 ## example
+$ hal config version edit --version $VERSION
 ```
 ### step8:
 #### Install spinnaker
 ```bash
-sudo hal deploy apply
+$ sudo hal deploy apply
 ```
 
 ### step9:
@@ -92,5 +92,5 @@ Note: uninstall spinnaker using `hal deploy clean'
 ## connecting via ssh tunnel
 
 ```sh
-ssh -N -i key.pem -L 9000:127.0.0.1:9000 -L 8084:127.0.0.1:8084 -L 8087:127.0.0.1:8087 -L 8080:127.0.0.1:8080 ubuntu@xx.xx.xx.xx
+ssh -N -i key.pem -L 9000:127.0.0.1:9000 -L 8084:127.0.0.1:8084 ubuntu@xx.xx.xx.xx
 ```
